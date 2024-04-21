@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-import withAntdLess from 'next-plugin-antd-less';
 
 const nextConfig = {
   images: {
@@ -15,6 +14,5 @@ const nextConfig = {
     ]
   }
 };
-export default withAntdLess(nextConfig);
 
-// module.exports = withAntdLess(nextConfig);
+module.exports = nextConfig;

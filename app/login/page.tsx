@@ -3,9 +3,13 @@
 import { Button, Form, Input, Segmented, type FormProps } from 'antd';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { loginApi, registerApi } from './api';
+// import { loginApi, registerApi } from './api';
 
-import styles from './index.css';
+// import styles from './index.css';
+// import './index.css';
+
+import styles from './index.module.scss';
+import React from 'react';
 
 type FieldType = {
   email?: string;
