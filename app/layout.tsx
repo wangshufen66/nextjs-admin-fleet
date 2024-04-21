@@ -42,6 +42,10 @@ export default function RootLayout({
                     <SettingsIcon className="h-4 w-4" />
                     Settings
                   </NavItem>
+                  <NavItem href="/login">
+                    <SettingsIcon className="h-4 w-4" />
+                    Login
+                  </NavItem>
                   <NavItem href="https://vercel.com/templates/next.js/admin-dashboard-tailwind-postgres-react-nextjs">
                     <VercelLogo className="h-4 w-4" />
                     Deploy
