@@ -14,10 +14,12 @@ export const db = drizzle(
 );
 
 const users = pgTable('users', {
-  id: serial('id').primaryKey(),
+  id: varchar('id', { length: 20 }).primaryKey(),
   name: varchar('name', { length: 50 }),
   username: varchar('username', { length: 50 }),
-  email: varchar('email', { length: 50 })
+  email: varchar('email', { length: 50 }),
+  password: varchar('password', { length: 50 }),
+  image: varchar('image', { length: 255 })
 });
 
 export type SelectUser = typeof users.$inferSelect;
@@ -48,6 +50,11 @@ export async function getUsers(
   const moreUsers = await db.select().from(users).limit(20).offset(offset);
   const newOffset = moreUsers.length >= 20 ? offset + 20 : null;
   return { users: moreUsers, newOffset };
+}
+
+export async function getUser(email: string) {
+  const res = await db.select().from(users).where(eq(users.email, email));
+  return res[0];
 }
 
 export async function deleteUserById(id: number) {

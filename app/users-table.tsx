@@ -75,7 +75,7 @@ function UserRow({ user }: { user: SelectUser }) {
           formAction={deleteUserWithId}
           disabled
         >
-          Delete
+          Delete0
         </Button>
       </TableCell>
     </TableRow>
