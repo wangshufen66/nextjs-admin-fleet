@@ -1,0 +1,35 @@
+/code/nextjs-git-refer/next-admin   参考 antd UI  i18  主题. http://next-admin.com/user/login
+
+/code/nextjs-git-refer/next-app   参考 antd UI  admin/123456    axios请求数据  Prisma➕mongo
+(git@github.com:benchenchuang/next-app.git (push))
+
+/code/nextjs-git-refer/next-shadcn-dashboard-starter   线上地址  https://next-shadcn-dashboard-starter.vercel.app/dashboard   借鉴light dark模式
+
+/code/nextjs-git-refer/nextadmin  好项目   参考结构 mongo 
+
+
+/code/nextjs-git-refer/nextjs-drizzle-postgres  有pg-sql + drizzle-orm 作为参考
+
+
+
+
+
+
+code/nextjs-git-refer/next-auth-antd-typescript-template     参考 antd UI 没价值 
+/code/nextjs-git-refer/next-auth-redux   参考 antd UI 没价值 
+/code/nextjs-git-refer/nextjs-13.5.4-tailwind-with-nextAuth-antd-shadcn-template  参考 antd UI 没价值
+/code/nextjs-git-refer/notion-clone  没啥用
+
+
+code/nextjs-git-refer/nextjs-postgres-auth-starter  官方文档
+
+  // "next-auth": "^5.0.0-beta.15",
+
+
+
+{
+      id: users.id,
+      name: users.name,
+      username: users.username,
+      email: users.email
+    }
