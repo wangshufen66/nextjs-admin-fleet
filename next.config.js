@@ -15,6 +15,10 @@ const nextConfig = {
         hostname: 'oss.kaoyanvip.cn'
       }
     ]
+  },
+  sassOptions: {
+    includePaths: ['./app'],
+    prependData: `@import "~@styles/variables.scss";`
   }
 };
 
