@@ -18,7 +18,7 @@ const nextConfig = {
   },
   sassOptions: {
     includePaths: ['./app'],
-    prependData: `@import "~@styles/variables.scss";`
+    prependData: `@import "~@/app/styles/variables.scss";`
   }
 };
 
