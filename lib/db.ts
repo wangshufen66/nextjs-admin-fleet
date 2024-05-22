@@ -24,32 +24,25 @@ const users = pgTable('users', {
 
 export type SelectUser = typeof users.$inferSelect;
 
-export async function getUsers(
-  search: string,
-  offset: number
-): Promise<{
+export async function getUsers(search: string): Promise<{
   users: SelectUser[];
-  newOffset: number | null;
+  count?: number;
 }> {
   // Always search the full table, not per page
   if (search) {
+    console.log('---search: ', search);
+    const searchusers = await db
+      .select()
+      .from(users)
+      .where(ilike(users.name, `%${search}%`));
     return {
-      users: await db
-        .select()
-        .from(users)
-        .where(ilike(users.name, `%${search}%`))
-        .limit(1000),
-      newOffset: null
+      users: searchusers,
+      count: searchusers.length
     };
   }
 
-  if (offset === null) {
-    return { users: [], newOffset: null };
-  }
-
-  const moreUsers = await db.select().from(users).limit(20).offset(offset);
-  const newOffset = moreUsers.length >= 20 ? offset + 20 : null;
-  return { users: moreUsers, newOffset };
+  const moreUsers = await db.select().from(users);
+  return { users: moreUsers, count: moreUsers.length };
 }
 
 export async function getUser(email: string) {

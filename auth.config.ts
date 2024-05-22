@@ -8,7 +8,7 @@ export const authConfig = {
     authorized({ auth, request: { nextUrl } }) {
       // console.log('nextUrl: ', nextUrl);
       const isLoggedIn = !!auth?.user;
-      console.log('isLoggedIn: ', auth);
+      // console.log('isLoggedIn: ', auth);
       if (isLoggedIn) return true;
       return false; // Redirect unauthenticated users to login page
     }

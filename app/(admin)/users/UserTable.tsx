@@ -12,7 +12,7 @@ export default function UsersTable({ dataSource }: { dataSource: any[] }) {
       <Table
         columns={usercolumns}
         dataSource={dataSource}
-        pagination={{ pageSize: 5 }}
+        pagination={{ pageSize: 2 }}
       />
     </>
   );

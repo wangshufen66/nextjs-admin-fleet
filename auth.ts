@@ -9,7 +9,7 @@ export const { auth, signIn, signOut } = NextAuth({
   providers: [
     Credentials({
       async authorize(credentials) {
-        console.log('52222 credentials: ', credentials);
+        // console.log('52222 credentials: ', credentials);
         // console.log(
         //   'z.string().email(): ',
         //   z.string().email(),
@@ -22,7 +22,7 @@ export const { auth, signIn, signOut } = NextAuth({
         // console.log('51222 parsedCredentials: ', parsedCredentials);
         // if (parsedCredentials.success) {
         const { Email, password } = credentials;
-        console.log('wwww email, password : ', Email, password);
+        // console.log('wwww email, password : ', Email, password);
         const user = await getUser(Email);
         const users = await getUsers('', 10);
         if (!user) return null;
