@@ -21,6 +21,7 @@ import { App } from 'antd';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { logout } from '@/api/login';
+import SignOut from './SignOut';
 
 const LayoutHeader = () => {
   const router = useRouter();
@@ -69,9 +70,11 @@ const LayoutHeader = () => {
         <div className={styles.control_item} onClick={switchScreenFull}>
           {isFull ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
         </div>
-        <div className={styles.control_item} onClick={logOut}>
+        {/* <div className={styles.control_item} onClick={logOut}>
           <PoweroffOutlined />
-        </div>
+          
+        </div> */}
+        {/* <SignOut /> */}
         {/* <div className={`flex-row ${styles.control_item}`}>
                     <Image className={styles.avatar} alt='amin' width={40} height={40} src='/avatar.jpg'/>
                     <CaretDownOutlined className={styles.down} />

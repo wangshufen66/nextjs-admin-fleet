@@ -22,15 +22,17 @@ export const { auth, signIn, signOut } = NextAuth({
         // console.log('51222 parsedCredentials: ', parsedCredentials);
         // if (parsedCredentials.success) {
         const { Email, password } = credentials;
-        // console.log('wwww email, password : ', Email, password);
+        console.log('wwww email, password : ', Email, password);
         const user = await getUser(Email);
-        const users = await getUsers('', 10);
+        const users = await getUsers('');
+        console.log('users: ', users);
         if (!user) return null;
         let passwordsMatch;
         if (user.password) {
           // passwordsMatch = await bcrypt.compare(password, user.password);
           passwordsMatch = password == user.password;
         }
+        console.log('passwordsMatch: ', passwordsMatch);
         if (passwordsMatch) return user;
         // }
         // return null;

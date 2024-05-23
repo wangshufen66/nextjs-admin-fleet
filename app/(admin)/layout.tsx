@@ -7,6 +7,7 @@ import { Suspense, ReactNode } from 'react';
 import styles from '@/app/layout/layout.module.scss';
 import Spinning from '@/app/components/Spinning';
 import LayoutHeader from '@/app/layout/header';
+import { User } from '@/app/layout/header/user';
 import LayoutSide from '@/app/layout/sideBar';
 import BreadCrumb from '@/app/layout/sideBar/bread';
 
@@ -16,7 +17,8 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
       <Suspense fallback={<Spinning />}>
         <div className={`flex-column ${styles.body}`}>
           <div className={styles.header}>
-            <LayoutHeader />
+            {/* <LayoutHeader /> */}
+            <User />
           </div>
           <div className={`flex-row ${styles.main}`}>
             <div className={styles.side}>
