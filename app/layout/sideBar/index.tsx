@@ -35,11 +35,10 @@ const items: MenuItem[] = [
   getItem('user管理', '/users', <GiftOutlined />),
   getItem('会员管理', '/customer', <TeamOutlined />),
   getItem('系统管理', '/system', <SettingOutlined />, [
-    getItem('用户管理', '/system/users'),
-    getItem('部门管理', '/system/depart'),
-    getItem('角色管理', '/system/role'),
-    getItem('字典管理', '/system/dictionary'),
-    getItem('菜单管理', '/system/menu')
+    getItem('部门管理', '/depart'),
+    getItem('角色管理', '/role'),
+    getItem('字典管理', '/dictionary'),
+    getItem('菜单管理', '/menu')
   ])
 ];
 
