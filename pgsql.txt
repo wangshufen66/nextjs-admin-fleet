@@ -1,0 +1,7 @@
+UPDATE users SET name ='wangsf',username='strive' WHERE id = '3';
+select * from users;
+ALTER TABLE users ADD COLUMN phone VARCHAR(255) DEFAULT '15200000000';
+
+
+UPDATE users SET phone ='15295502569' WHERE id = '3';
+select name,username,image ,phone from users where id='3' or id='1'
