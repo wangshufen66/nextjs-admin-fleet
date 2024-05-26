@@ -19,7 +19,8 @@ const users = pgTable('users', {
   username: varchar('username', { length: 50 }),
   email: varchar('email', { length: 50 }),
   password: varchar('password', { length: 50 }),
-  image: varchar('image', { length: 255 })
+  image: varchar('image', { length: 255 }),
+  phone: varchar('phone', { length: 25 })
 });
 
 export type SelectUser = typeof users.$inferSelect;
@@ -42,6 +43,7 @@ export async function getUsers(search: string): Promise<{
   }
 
   const moreUsers = await db.select().from(users);
+  console.log('526 moreUsers: ', moreUsers);
   return { users: moreUsers, count: moreUsers.length };
 }
 

@@ -30,36 +30,36 @@ export const columns = (
       dataIndex: 'name',
       key: 'name'
     },
-    {
-      title: '手机',
-      dataIndex: 'phone',
-      key: 'phone'
-    },
+    // {
+    //   title: '手机',
+    //   dataIndex: 'phone',
+    //   key: 'phone'
+    // },
     {
       title: '邮箱',
       dataIndex: 'email',
       key: 'email'
     },
-    {
-      title: '部门',
-      dataIndex: 'depart',
-      key: 'depart',
-      render(value, record, index) {
-        return <Tag color="#4062d8">{value.name}</Tag>;
-      }
-    },
-    {
-      title: '角色',
-      dataIndex: 'role',
-      render(value, record, index) {
-        return <Tag>{value.name}</Tag>;
-      }
-    },
-    {
-      title: '创建时间',
-      dataIndex: 'createTime',
-      key: 'createTime'
-    },
+    // {
+    //   title: '部门',
+    //   dataIndex: 'depart',
+    //   key: 'depart',
+    //   render(value, record, index) {
+    //     return <Tag color="#4062d8">{value.name}</Tag>;
+    //   }
+    // },
+    // {
+    //   title: '角色',
+    //   dataIndex: 'role',
+    //   render(value, record, index) {
+    //     return <Tag>{value.name}</Tag>;
+    //   }
+    // },
+    // {
+    //   title: '创建时间',
+    //   dataIndex: 'createTime',
+    //   key: 'createTime'
+    // },
     {
       title: '操作',
       dataIndex: 'action',

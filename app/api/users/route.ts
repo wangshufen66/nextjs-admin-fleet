@@ -6,6 +6,8 @@ import {
   responseData
 } from '@/app/api/base.interface';
 import { encryption } from '@/app/api/encrypt';
+import { getUsers } from '@/lib/db';
+
 /**
  * 查询列表
  * @param req
@@ -104,7 +106,16 @@ export const GET = async (req: NextRequest) => {
       size: 10,
       total: 2
     };
-    return NextResponse.json(responseData(200, '操作成功', data));
+    const { count, users } = await getUsers(name);
+
+    return NextResponse.json(
+      responseData(200, '操作成功', {
+        list: users,
+        total: count,
+        page: 1,
+        size: 10
+      })
+    );
   } catch (err: any) {
     console.log(err);
     return NextResponse.json(responseData(0, '操作失败'));

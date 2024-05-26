@@ -31,6 +31,7 @@ const Users = (props: any) => {
           ...formData
         };
         let res = await remoteList(form);
+        console.log('526 res: ', res);
         let { list, total } = res.data;
         let result: IUserObject = {
           list,
