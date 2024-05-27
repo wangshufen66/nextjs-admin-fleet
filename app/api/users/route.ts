@@ -6,7 +6,7 @@ import {
   responseData
 } from '@/app/api/base.interface';
 import { encryption } from '@/app/api/encrypt';
-import { getUsers } from '@/lib/db';
+import { getUsers, createUser, updateUser, deleteUserById } from '@/lib/db';
 
 /**
  * 查询列表
@@ -37,32 +37,6 @@ export const GET = async (req: NextRequest) => {
       where.departId = departId;
     }
     let query = requestData(page, size, where);
-    // let data = await prisma.user.findMany({
-    //   ...query,
-    //   select: {
-    //     id: true,
-    //     name: true,
-    //     username: true,
-    //     roleId: true,
-    //     post: true,
-    //     avatar: true,
-    //     departId: true,
-    //     email: true,
-    //     createTime: true,
-    //     phone: true,
-    //     depart: {
-    //       select: {
-    //         name: true
-    //       }
-    //     },
-    //     role: {
-    //       select: {
-    //         name: true
-    //       }
-    //     }
-    //   }
-    // });
-    // let total = await prisma.user.count({ where });
     const data = {
       list: [
         {
@@ -129,21 +103,32 @@ export const GET = async (req: NextRequest) => {
 export const POST = async (req: NextRequest) => {
   try {
     let data = await req.json();
-    let { username = '', name = '', phone = '', password = '123456' } = data;
+    console.log('POST data: ', data);
+    let {
+      username = '',
+      name = '',
+      phone = '',
+      email = '',
+      password = '123456'
+    } = data;
     if (!username) {
       return NextResponse.json(responseData(0, '用户名不能为空'));
     }
     if (!name) {
       return NextResponse.json(responseData(0, '姓名不能为空'));
     }
+    if (!email) {
+      return NextResponse.json(responseData(0, '邮箱不能为空'));
+    }
     if (!phone) {
       return NextResponse.json(responseData(0, '手机号不能为空'));
     }
     let encryptPassword = encryption(password);
     data.password = encryptPassword;
-    // await prisma.user.create({ data });
+    await createUser(name, username, email, phone, password);
     return NextResponse.json(responseData(200, '操作成功'));
   } catch (err: any) {
+    console.log('createUser err: ', err);
     let message = '操作失败';
     let target = err.meta?.target || '';
     if (target) {
@@ -162,9 +147,11 @@ export const DELETE = async (req: NextRequest) => {
   try {
     const { searchParams } = new URL(req.url);
     let ids = searchParams.getAll('ids[]');
+    console.log('DELETE ids: ', ids);
     if (!ids || ids.length == 0) {
       return NextResponse.json(responseData(0, '缺少删除信息Id'));
     }
+    await deleteUserById(ids[0]);
     // await prisma.user.deleteMany({
     //   where: {
     //     id: {
@@ -185,19 +172,27 @@ export const DELETE = async (req: NextRequest) => {
 export const PUT = async (req: NextRequest) => {
   try {
     let { id, ...data } = await req.json();
+    console.log('更新信息 PUT data: ', id, data);
     if (!id) {
       return NextResponse.json(responseData(0, '缺少更新信息Id'));
     }
     delete data.password;
     delete data.role;
-    delete data.depart;
+    const res = await updateUser(
+      id,
+      data.name,
+      data.username,
+      data.email,
+      data.phone
+    );
+    console.log('res: ', res);
     // const res = await prisma.user.update({
     //   where: {
     //     id
     //   },
     //   data
     // });
-    // return NextResponse.json(responseData(200, '操作成功', res));
+    return NextResponse.json(responseData(200, '操作成功', res));
   } catch (error: any) {
     return NextResponse.json(responseData(0, '操作失败'));
   }

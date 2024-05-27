@@ -31,7 +31,6 @@ const Users = (props: any) => {
           ...formData
         };
         let res = await remoteList(form);
-        console.log('526 res: ', res);
         let { list, total } = res.data;
         let result: IUserObject = {
           list,
@@ -65,7 +64,8 @@ const Users = (props: any) => {
     });
   };
   //编辑
-  const updateItemByInfo = (item?: IUserInfo) => {
+  const updateItemByInfo = (item?: any) => {
+    console.log('527 item: ', item);
     setShowData(true);
     setDataInfo(item);
   };
@@ -81,7 +81,7 @@ const Users = (props: any) => {
     }
   );
   const { run: updateItem } = useRequest(
-    async (item: IUserInfo) => updateItemByInfo(item),
+    async (item: any) => updateItemByInfo(item),
     {
       manual: true
     }
@@ -138,7 +138,7 @@ const Users = (props: any) => {
         </>
       )}
 
-      {/* {showData && (
+      {showData && (
         <UserInfo
           info={dataInfo}
           submit={() => {
@@ -147,7 +147,7 @@ const Users = (props: any) => {
           }}
           close={() => setShowData(false)}
         />
-      )} */}
+      )}
     </>
   );
 };

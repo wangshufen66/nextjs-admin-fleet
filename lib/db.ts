@@ -14,7 +14,8 @@ export const db = drizzle(
 );
 
 const users = pgTable('users', {
-  id: varchar('id', { length: 20 }).primaryKey(),
+  id: serial('id').primaryKey(),
+  // id: serial('id'),
   name: varchar('name', { length: 50 }),
   username: varchar('username', { length: 50 }),
   email: varchar('email', { length: 50 }),
@@ -31,7 +32,6 @@ export async function getUsers(search: string): Promise<{
 }> {
   // Always search the full table, not per page
   if (search) {
-    console.log('---search: ', search);
     const searchusers = await db
       .select()
       .from(users)
@@ -43,7 +43,6 @@ export async function getUsers(search: string): Promise<{
   }
 
   const moreUsers = await db.select().from(users);
-  console.log('526 moreUsers: ', moreUsers);
   return { users: moreUsers, count: moreUsers.length };
 }
 
@@ -54,4 +53,29 @@ export async function getUser(email: string) {
 
 export async function deleteUserById(id: number) {
   await db.delete(users).where(eq(users.id, id));
+}
+//创建用户
+export async function createUser(
+  name: string,
+  username: string,
+  email: string,
+  phone: string,
+  password: string
+) {
+  return await db
+    .insert(users)
+    .values({ name, username, email, phone, password });
+}
+//更新用户
+export async function updateUser(
+  id: number,
+  name: string,
+  username: string,
+  email: string,
+  phone: string
+) {
+  await db
+    .update(users)
+    .set({ name, username, email, phone })
+    .where(eq(users.id, id));
 }
