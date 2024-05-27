@@ -151,7 +151,7 @@ export const DELETE = async (req: NextRequest) => {
     if (!ids || ids.length == 0) {
       return NextResponse.json(responseData(0, '缺少删除信息Id'));
     }
-    await deleteUserById(ids[0]);
+    await deleteUserById(Number(ids[0]));
     // await prisma.user.deleteMany({
     //   where: {
     //     id: {

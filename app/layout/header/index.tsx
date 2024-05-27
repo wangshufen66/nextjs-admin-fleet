@@ -20,8 +20,8 @@ import screenfull from 'screenfull';
 import { App } from 'antd';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { logout } from '@/api/login';
-import SignOut from './SignOut';
+// import { logout } from '@/api/login';
+// import SignOut from './SignOut';
 
 const LayoutHeader = () => {
   const router = useRouter();

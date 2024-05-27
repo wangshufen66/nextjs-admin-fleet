@@ -49,6 +49,7 @@
     "trailingComma": "none"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.2"
+    "@types/bcrypt": "^5.0.2",
+    "@types/bcryptjs": "^2.4.6"
   }
 }
