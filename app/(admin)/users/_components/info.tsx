@@ -3,8 +3,8 @@ import { Form, Input, Select, Spin, TreeSelect, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { IUserInfo } from '../users.type';
 import { rules } from './rules';
-import { remoteList as remoteRoleList } from '@/api/role';
-import { remoteList as remoteDepartList } from '@/api/depart';
+// import { remoteList as remoteRoleList } from '@/api/role';
+// import { remoteList as remoteDepartList } from '@/api/depart';
 import { addInfo, updateInfo } from '@/api/users';
 
 const UserInfo = (props: any) => {
