@@ -1,14 +1,15 @@
 import NextAuth from 'next-auth';
 import { authConfig } from './auth.config';
 import Credentials from 'next-auth/providers/credentials';
-import { z } from 'zod';
+// import { z } from 'zod';
 // import bcrypt from 'bcrypt';
 import { getUser, getUsers } from '@/lib/db';
 export const { auth, signIn, signOut } = NextAuth({
   ...authConfig,
   providers: [
     Credentials({
-      async authorize(credentials) {
+      async authorize(credentials, request): Promise<any | null> {
+        console.log('request: ', request);
         // console.log('52222 credentials: ', credentials);
         // console.log(
         //   'z.string().email(): ',
@@ -23,7 +24,7 @@ export const { auth, signIn, signOut } = NextAuth({
         // if (parsedCredentials.success) {
         const { Email, password } = credentials;
         console.log('wwww email, password : ', Email, password);
-        const user = await getUser(Email);
+        const user = await getUser(Email as string);
         const users = await getUsers('');
         console.log('users: ', users);
         if (!user) return null;
