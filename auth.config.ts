@@ -9,9 +9,12 @@ export const authConfig = {
       console.log('nextUrl: ', nextUrl);
       const isLoggedIn = !!auth?.user;
       console.log('622 isLoggedIn: ', isLoggedIn);
-      const isOnDashboard = nextUrl.pathname.startsWith('/dashboard');
-      console.log('622 isOnDashboard: ', isOnDashboard);
+      const isLogin = nextUrl.pathname.startsWith('/login');
+      console.log('622 isOnDashboard: ', isLogin);
       if (isLoggedIn) {
+        if (isLogin) {
+          return Response.redirect(new URL('/dashboard', nextUrl));
+        }
         return true;
       } else {
         return false;
