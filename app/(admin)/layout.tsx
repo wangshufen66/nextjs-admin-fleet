@@ -1,12 +1,6 @@
-import Sidebar from '@/app/ui/dashboard/sidebar/sidebar';
-// import styles from '@/app/ui/dashboard/dashboard.module.css';
-import Footer from '@/app/ui/dashboard/footer/footer';
-import Navbar from '@/app/ui/dashboard/navbar/navbar';
-
 import { Suspense, ReactNode } from 'react';
 import styles from '@/app/layout/layout.module.scss';
 import Spinning from '@/app/components/Spinning';
-import LayoutHeader from '@/app/layout/header';
 import { User } from '@/app/layout/header/user';
 import LayoutSide from '@/app/layout/sideBar';
 import BreadCrumb from '@/app/layout/sideBar/bread';
@@ -32,16 +26,6 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
           </div>
         </div>
       </Suspense>
-      {/* <div className={styles.container}>
-        <div className={styles.menu}>
-          <Sidebar />
-        </div>
-        <div className={styles.content}>
-          <Navbar />
-          {children}
-          <Footer />
-        </div>
-      </div> */}
     </>
   );
 };
