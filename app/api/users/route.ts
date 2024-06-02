@@ -37,49 +37,6 @@ export const GET = async (req: NextRequest) => {
       where.departId = departId;
     }
     let query = requestData(page, size, where);
-    const data = {
-      list: [
-        {
-          id: '65815d4c663d1b3f55bfe711',
-          name: 'Jimmy',
-          username: 'admin',
-          roleId: '65828b837518bba0d635c120',
-          post: '开发',
-          avatar: null,
-          departId: '658132ad13e2f8cd868a9e14',
-          email: 'chenchuangtx@sina.com',
-          createTime: '2023-12-13T06:33:50.000Z',
-          phone: '13245677654',
-          depart: {
-            name: '开发'
-          },
-          role: {
-            name: '超级管理员'
-          }
-        },
-        {
-          id: '6582b69ce099dae32ab0c58a',
-          name: 'chenchuang',
-          username: 'chen',
-          roleId: '65828ceb24778efe860f7242',
-          post: '测试',
-          avatar: null,
-          departId: '6581327c13e2f8cd868a9e11',
-          email: '123@qq.com',
-          createTime: '2023-12-20T09:40:44.248Z',
-          phone: '13223452345',
-          depart: {
-            name: '技术部'
-          },
-          role: {
-            name: '一般管理员'
-          }
-        }
-      ],
-      page: 1,
-      size: 10,
-      total: 2
-    };
     const { count, users } = await getUsers(name);
 
     return NextResponse.json(
