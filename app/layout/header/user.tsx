@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { auth, signIn, signOut } from '@/lib/auth';
+import { auth, signOut } from '@/lib/auth';
 import Image from 'next/image';
 
 export async function User() {
@@ -8,17 +8,7 @@ export async function User() {
   const user = session?.user;
 
   if (!user) {
-    return (
-      <Button variant="outline">/</Button>
-      // <form
-      //   action={async () => {
-      //     'use server';
-      //     await signIn();
-      //   }}
-      // >
-      //   <Button variant="outline">Sign In</Button>
-      // </form>
-    );
+    return <Button variant="outline">未登录</Button>;
   }
 
   return (
@@ -29,8 +19,9 @@ export async function User() {
           await signOut();
         }}
       >
-        <Button variant="outline">{user.name} ==Sign Out2</Button>
+        <Button variant="outline"> Sign Out1</Button>
       </form>
+      <div>{user.name}</div>
       <Image
         className="h-8 w-8 rounded-full"
         src={user.image!}

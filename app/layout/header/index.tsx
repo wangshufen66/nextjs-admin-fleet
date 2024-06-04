@@ -12,16 +12,13 @@ import styles from './header.module.scss';
 import {
   FullscreenOutlined,
   FullscreenExitOutlined,
-  PoweroffOutlined,
-  ExclamationCircleOutlined,
-  CaretDownOutlined
+  ExclamationCircleOutlined
 } from '@ant-design/icons';
 import screenfull from 'screenfull';
 import { App } from 'antd';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 // import { logout } from '@/api/login';
-// import SignOut from './SignOut';
 
 const LayoutHeader = () => {
   const router = useRouter();
@@ -74,7 +71,6 @@ const LayoutHeader = () => {
           <PoweroffOutlined />
           
         </div> */}
-        {/* <SignOut /> */}
         {/* <div className={`flex-row ${styles.control_item}`}>
                     <Image className={styles.avatar} alt='amin' width={40} height={40} src='/avatar.jpg'/>
                     <CaretDownOutlined className={styles.down} />
