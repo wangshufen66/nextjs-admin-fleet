@@ -4,9 +4,9 @@ import {
   getParamsData,
   requestData,
   responseData
-} from '@/app/api/base.interface';
-import { encryption } from '@/app/api/encrypt';
-import { getUsers, createUser, updateUser, deleteUserById } from '@/lib/db';
+} from 'app/api/base.interface';
+import { encryption } from 'app/api/encrypt';
+import { getUsers, createUser, updateUser, deleteUserById } from 'lib/db';
 
 /**
  * 查询列表
