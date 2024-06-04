@@ -1,4 +1,4 @@
-import ShowDrawer from '@/app/components/ShowDrawer';
+import ShowDrawer from 'app/components/ShowDrawer';
 import { Form, Input, Select, Spin, TreeSelect, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { IUserInfo } from '../users.type';

@@ -1,4 +1,4 @@
-import { http } from '@/app/lib/request';
+import { http } from 'app/lib/request';
 import { IQueryList, IResponse } from '@/api/index.type';
 
 export const remoteList = (params: IQueryList) => {

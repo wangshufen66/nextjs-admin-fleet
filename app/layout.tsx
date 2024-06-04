@@ -1,13 +1,13 @@
 import React from 'react';
 import { Inter } from 'next/font/google';
-import StyledComponentsRegistry from '@/app/components/AntdRegistry';
-import '@/app/styles/reset.css';
-import '@/app/styles/global.scss';
+import StyledComponentsRegistry from 'app/components/AntdRegistry';
+import 'app/styles/reset.css';
+import 'app/styles/global.scss';
 
 import { ConfigProvider, App } from 'antd';
-import theme from '@/app/theme/config';
+import theme from 'app/theme/config';
 import type { Metadata } from 'next';
-import { siteConfig } from '@/app/config/site';
+import { siteConfig } from 'app/config/site';
 import zhCN from 'antd/locale/zh_CN';
 
 const inter = Inter({ subsets: ['latin'] });

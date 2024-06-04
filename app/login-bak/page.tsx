@@ -1,7 +1,7 @@
 // 'use client';
 // import { useSession } from 'next-auth/react';
 
-import LoginForm from '@/app/ui/login-form';
+import LoginForm from 'app/ui/login-form';
 
 export default function LoginPage() {
   // const { data: session } = useSession();
