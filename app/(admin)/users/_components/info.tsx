@@ -3,9 +3,7 @@ import { Form, Input, Select, Spin, TreeSelect, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { IUserInfo } from '../users.type';
 import { rules } from './rules';
-// import { remoteList as remoteRoleList } from '@/api/role';
-// import { remoteList as remoteDepartList } from '@/api/depart';
-import { addInfo, updateInfo } from '@/api/users';
+import { addInfo, updateInfo } from '@/interface/users';
 
 const UserInfo = (props: any) => {
   let { info } = props;
@@ -22,34 +20,6 @@ const UserInfo = (props: any) => {
   const [form] = Form.useForm<IUserInfo>();
   const [loading, setLoading] = useState<boolean>(false);
   const [infoForm, setInfoForm] = useState<IUserInfo>({ ...initForm, ...info });
-  // const [roleList, setRoleList] = useState<roleInfo[]>();
-  // const [departList, setDepartList] = useState<DepartInfo[]>();
-
-  // useEffect(() => {
-  //   getDepartSearch();
-  //   getRoleSearch();
-  // }, []);
-
-  //部门列表
-  // const getDepartSearch = async () => {
-  //   try {
-  //     let res = await remoteDepartList({});
-  //     let { list } = res.data;
-  //     setDepartList(list);
-  //   } finally {
-  //   }
-  // };
-  //角色列表
-  // const getRoleSearch = async () => {
-  //   setLoading(true);
-  //   try {
-  //     let res = await remoteRoleList({});
-  //     let { list } = res.data;
-  //     setRoleList(list);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
   //完成 提交
   const onFinish = () => {

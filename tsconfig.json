@@ -18,8 +18,8 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/lib/*": ["lib/*"],
-      "app/*": ["app/*"],
-      "@/*": ["./*"]
+      "@/app/*": ["app/*"],
+      "@/interface/*": ["interface/*"]
     },
     "plugins": [
       {

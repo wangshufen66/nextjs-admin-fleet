@@ -1,5 +1,5 @@
-import { http } from 'app/lib/request';
-import { IQueryList, IResponse } from '@/api/index.type';
+import { http } from '@/lib/request';
+import { IQueryList, IResponse } from '@/interface/index.type';
 
 export const remoteList = (params: IQueryList) => {
   console.log('params: ', params);

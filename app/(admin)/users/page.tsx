@@ -1,7 +1,7 @@
 'use client';
 import { Button, Card, Flex, Form, Input, Modal, Table, message } from 'antd';
 import { columns } from './columns';
-import { deleteInfo, remoteList } from '@/api/users';
+import { deleteInfo, remoteList } from '@/interface/users';
 import { useAntdTable, useDebounceFn, useRequest } from 'ahooks';
 import { IForm, IUserObject, IUserInfo } from './users.type';
 import { ExclamationCircleFilled, PlusCircleOutlined } from '@ant-design/icons';
