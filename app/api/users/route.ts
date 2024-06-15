@@ -21,8 +21,6 @@ export const GET = async (req: NextRequest) => {
     let size = Number(getParamsData(searchParams, 'size')) || 10;
     let name = getParamsData(searchParams, 'name');
     let phone = getParamsData(searchParams, 'phone');
-    let roleId = getParamsData(searchParams, 'roleId');
-    let departId = getParamsData(searchParams, 'departId');
     let where: any = {};
     if (name) {
       where.name = name;
@@ -30,14 +28,8 @@ export const GET = async (req: NextRequest) => {
     if (phone) {
       where.phone = phone;
     }
-    if (roleId) {
-      where.roleId = roleId;
-    }
-    if (departId) {
-      where.departId = departId;
-    }
     let query = requestData(page, size, where);
-    const { count, users } = await getUsers(name);
+    const { count, users } = await getUsers(name, phone);
 
     return NextResponse.json(
       responseData(200, '操作成功', {

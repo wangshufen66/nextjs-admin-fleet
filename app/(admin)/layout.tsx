@@ -4,6 +4,7 @@ import Spinning from 'app/components/Spinning';
 import { User } from 'app/layout/header/user';
 import LayoutSide from 'app/layout/sideBar';
 import BreadCrumb from 'app/layout/sideBar/bread';
+import LayoutHeader from '../layout/header';
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
   return (
@@ -11,15 +12,15 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
       <Suspense fallback={<Spinning />}>
         <div className={`flex-column ${styles.body}`}>
           <div className={styles.header}>
-            {/* <LayoutHeader /> */}
-            <User />
+            <LayoutHeader />
+            {/* <User /> */}
           </div>
           <div className={`flex-row ${styles.main}`}>
             <div className={styles.side}>
               <LayoutSide />
             </div>
             <div className={`flex-column ${styles.content}`}>
-              <BreadCrumb />
+              {/* <BreadCrumb /> */}
               <div className={styles.wrapper}>{children}</div>
               <p className={styles.footer}>2023 @小红书11</p>
             </div>

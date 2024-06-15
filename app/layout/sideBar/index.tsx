@@ -30,15 +30,15 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('概览', '/dashboard', <DesktopOutlined />),
-  getItem('订单管理', '/order', <ShoppingOutlined />),
-  getItem('user管理', '/users', <GiftOutlined />),
-  getItem('会员管理', '/customer', <TeamOutlined />),
-  getItem('系统管理', '/system', <SettingOutlined />, [
-    getItem('部门管理', '/depart'),
-    getItem('角色管理', '/role'),
-    getItem('字典管理', '/dictionary'),
-    getItem('菜单管理', '/menu')
+  getItem('dashboard', '/dashboard', <DesktopOutlined />),
+  getItem('order', '/order', <ShoppingOutlined />),
+  getItem('users', '/users', <GiftOutlined />),
+  getItem('report', '/report', <TeamOutlined />),
+  getItem('system', '/system', <SettingOutlined />, [
+    // getItem('部门管理', '/depart'),
+    // getItem('角色管理', '/role'),
+    getItem('dictionary', '/system/dictionary'),
+    getItem('menu', '/system/menu')
   ])
 ];
 
