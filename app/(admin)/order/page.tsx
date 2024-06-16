@@ -1,7 +1,7 @@
 'use client';
 import { Button, Card, Flex, Form, Input, Modal, Table, message } from 'antd';
 import { columns } from './columns';
-import { deleteInfo, remoteList } from '@/interface/users';
+import { getOrderList } from '@/interface/orders';
 import { useAntdTable, useDebounceFn, useRequest } from 'ahooks';
 import { IForm, IUserObject, IUserInfo } from './users.type';
 import { ExclamationCircleFilled, PlusCircleOutlined } from '@ant-design/icons';
@@ -10,14 +10,11 @@ import UserInfo from './_components/info';
 
 const { confirm } = Modal;
 
-const Users = (props: any) => {
-  const { isShowSearch = true, roleId = '', departId = '' } = props;
+const Orders = (props: any) => {
+  const { isShowSearch = true } = props;
   const [form] = Form.useForm();
   const [showData, setShowData] = useState<Boolean>(false);
   const [dataInfo, setDataInfo] = useState<IUserInfo | object>();
-  useEffect(() => {
-    search.reset();
-  }, [roleId, departId]);
   //查询信息列表
   const searchList = (params: any, formData: IForm): Promise<IUserObject> => {
     return new Promise(async (resolve, reject) => {
@@ -26,11 +23,10 @@ const Users = (props: any) => {
         let form = {
           page,
           size,
-          roleId,
-          departId,
           ...formData
         };
-        let res = await remoteList(form);
+        let res = await getOrderList(form);
+        console.log('res:Orders== ', res);
         let { list, total } = res.data;
         let result: IUserObject = {
           list,
@@ -54,7 +50,7 @@ const Users = (props: any) => {
       okText: '确定',
       onOk: async () => {
         try {
-          await deleteInfo({ ids: [id as string] });
+          // await deleteInfo({ ids: [id as string] });
           message.success('操作成功');
           search.submit();
         } catch (err) {
@@ -152,4 +148,4 @@ const Users = (props: any) => {
   );
 };
 
-export default Users;
+export default Orders;

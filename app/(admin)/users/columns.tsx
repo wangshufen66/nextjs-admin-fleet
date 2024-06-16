@@ -1,11 +1,3 @@
-/*
- * @Author: benchenchuang benchenchuang
- * @Date: 2023-12-22 11:29:54
- * @LastEditors: benchenchuang benchenchuang
- * @LastEditTime: 2023-12-23 17:40:02
- * @FilePath: /next-app/src/app/(admin)/users/columns.tsx
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%A
- */
 import { Button, Flex, Image, Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { IUserInfo } from './users.type';

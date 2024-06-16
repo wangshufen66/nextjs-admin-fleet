@@ -11,13 +11,10 @@ import UserInfo from './_components/info';
 const { confirm } = Modal;
 
 const Users = (props: any) => {
-  const { isShowSearch = true, roleId = '', departId = '' } = props;
+  const { isShowSearch = true } = props;
   const [form] = Form.useForm();
   const [showData, setShowData] = useState<Boolean>(false);
   const [dataInfo, setDataInfo] = useState<IUserInfo | object>();
-  useEffect(() => {
-    search.reset();
-  }, [roleId, departId]);
   //查询信息列表
   const searchList = (params: any, formData: IForm): Promise<IUserObject> => {
     return new Promise(async (resolve, reject) => {
@@ -26,8 +23,6 @@ const Users = (props: any) => {
         let form = {
           page,
           size,
-          roleId,
-          departId,
           ...formData
         };
         let res = await remoteList(form);
@@ -65,7 +60,6 @@ const Users = (props: any) => {
   };
   //编辑
   const updateItemByInfo = (item?: any) => {
-    console.log('527 item: ', item);
     setShowData(true);
     setDataInfo(item);
   };
