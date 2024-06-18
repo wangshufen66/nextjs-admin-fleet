@@ -39,7 +39,13 @@ export async function getOrders(
     const searchorders = await db
       .select()
       .from(orders)
-      .where(and(ilike(orders.customerName, `%${customerName}%`)));
+      .where(
+        and(
+          ilike(orders.customerName, `%${customerName}%`),
+          ilike(orders.paymentMethod, `%${method}%`),
+          ilike(orders.orderStatus, `%${status}%`)
+        )
+      );
     return {
       orders: handleTime(searchorders),
       count: searchorders.length
