@@ -2,7 +2,6 @@ import { http } from '@/lib/request';
 import { IQueryList, IResponse } from '@/interface/index.type';
 
 export const remoteList = (params: IQueryList) => {
-  console.log('params: ', params);
   return http.get<IResponse>(`/api/users`, { params });
 };
 

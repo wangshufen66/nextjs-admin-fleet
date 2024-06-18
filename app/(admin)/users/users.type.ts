@@ -11,8 +11,6 @@ export type IUserInfo = {
   password: string;
   post?: string;
   avatar?: string;
-  roleId: string;
-  departId: string;
   address?: string;
 };
 export interface IForm {

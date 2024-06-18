@@ -6,7 +6,12 @@ import {
   responseData
 } from 'app/api/base.interface';
 import { encryption } from 'app/api/encrypt';
-import { getUsers, createUser, updateUser, deleteUserById } from 'lib/db';
+import {
+  getUsers,
+  createUser,
+  updateUser,
+  deleteUserById
+} from 'lib/models/users';
 
 /**
  * 查询列表
@@ -52,7 +57,6 @@ export const GET = async (req: NextRequest) => {
 export const POST = async (req: NextRequest) => {
   try {
     let data = await req.json();
-    console.log('POST data: ', data);
     let {
       username = '',
       name = '',
@@ -77,7 +81,6 @@ export const POST = async (req: NextRequest) => {
     await createUser(name, username, email, phone, password);
     return NextResponse.json(responseData(200, '操作成功'));
   } catch (err: any) {
-    console.log('createUser err: ', err);
     let message = '操作失败';
     let target = err.meta?.target || '';
     if (target) {
@@ -95,19 +98,11 @@ export const POST = async (req: NextRequest) => {
 export const DELETE = async (req: NextRequest) => {
   try {
     const { searchParams } = new URL(req.url);
-    let ids = searchParams.getAll('ids[]');
-    console.log('DELETE ids: ', ids);
-    if (!ids || ids.length == 0) {
+    let id = searchParams.getAll('id');
+    if (!id) {
       return NextResponse.json(responseData(0, '缺少删除信息Id'));
     }
-    await deleteUserById(Number(ids[0]));
-    // await prisma.user.deleteMany({
-    //   where: {
-    //     id: {
-    //       in: ids
-    //     }
-    //   }
-    // });
+    await deleteUserById(Number(id));
     return NextResponse.json(responseData(200, '操作成功'));
   } catch (error: any) {
     return NextResponse.json(responseData(0, '操作失败'));
@@ -121,7 +116,6 @@ export const DELETE = async (req: NextRequest) => {
 export const PUT = async (req: NextRequest) => {
   try {
     let { id, ...data } = await req.json();
-    console.log('更新信息 PUT data: ', id, data);
     if (!id) {
       return NextResponse.json(responseData(0, '缺少更新信息Id'));
     }
@@ -134,13 +128,6 @@ export const PUT = async (req: NextRequest) => {
       data.email,
       data.phone
     );
-    console.log('res: ', res);
-    // const res = await prisma.user.update({
-    //   where: {
-    //     id
-    //   },
-    //   data
-    // });
     return NextResponse.json(responseData(200, '操作成功', res));
   } catch (error: any) {
     return NextResponse.json(responseData(0, '操作失败'));
