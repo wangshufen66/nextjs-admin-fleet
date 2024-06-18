@@ -1,9 +1,8 @@
 'use client';
 import { Button, Card, Flex, Form, Input, Modal, Table, message } from 'antd';
 import { columns } from './columns';
-import { getOrderList } from '@/interface/orders';
+import { getOrderList, deleteInfo } from '@/interface/orders';
 import { useAntdTable, useDebounceFn, useRequest } from 'ahooks';
-import { IForm, IUserObject, IUserInfo } from './users.type';
 import { ExclamationCircleFilled, PlusCircleOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 import UserInfo from './_components/info';
@@ -14,9 +13,9 @@ const Orders = (props: any) => {
   const { isShowSearch = true } = props;
   const [form] = Form.useForm();
   const [showData, setShowData] = useState<Boolean>(false);
-  const [dataInfo, setDataInfo] = useState<IUserInfo | object>();
+  const [dataInfo, setDataInfo] = useState<any | object>();
   //查询信息列表
-  const searchList = (params: any, formData: IForm): Promise<IUserObject> => {
+  const searchList = (params: any, formData: any): Promise<any> => {
     return new Promise(async (resolve, reject) => {
       try {
         let { pageSize: size, current: page } = params;
@@ -26,9 +25,9 @@ const Orders = (props: any) => {
           ...formData
         };
         let res = await getOrderList(form);
-        console.log('res:Orders== ', res);
         let { list, total } = res.data;
-        let result: IUserObject = {
+        console.log('0618 order list: ', list);
+        let result: any = {
           list,
           total
         };
@@ -40,17 +39,17 @@ const Orders = (props: any) => {
     });
   };
   //删除
-  const deleteItemByInfo = (item: IUserInfo) => {
-    let { id, name } = item;
+  const deleteItemByInfo = (item: any) => {
+    let { orderId, customerName } = item;
     confirm({
       title: '操作提示',
       icon: <ExclamationCircleFilled />,
-      content: `确定要删除 ${name} 字典?`,
+      content: `确定要删除 ${customerName} 字典?`,
       cancelText: '取消',
       okText: '确定',
       onOk: async () => {
         try {
-          // await deleteInfo({ ids: [id as string] });
+          await deleteInfo({ id: orderId });
           message.success('操作成功');
           search.submit();
         } catch (err) {
@@ -61,7 +60,6 @@ const Orders = (props: any) => {
   };
   //编辑
   const updateItemByInfo = (item?: any) => {
-    console.log('527 item: ', item);
     setShowData(true);
     setDataInfo(item);
   };
@@ -71,7 +69,7 @@ const Orders = (props: any) => {
   });
   const { run: autoSearch } = useDebounceFn(search.submit, { wait: 500 });
   const { run: deleteItem } = useRequest(
-    async (item: IUserInfo) => deleteItemByInfo(item),
+    async (item: any) => deleteItemByInfo(item),
     {
       manual: true
     }
@@ -89,11 +87,14 @@ const Orders = (props: any) => {
         <Card style={{ margin: '10px 0' }}>
           {
             <Form form={form} onValuesChange={autoSearch} layout="inline">
-              <Form.Item label="" name="name">
-                <Input placeholder="请输入姓名" />
+              <Form.Item label="" name="customerName">
+                <Input placeholder="请输入用户名" />
               </Form.Item>
-              <Form.Item label="" name="phone">
-                <Input placeholder="请输入手机号" />
+              <Form.Item label="" name="orderStatus">
+                <Input placeholder="请选择订单状态" />
+              </Form.Item>
+              <Form.Item label="" name="paymentMethod">
+                <Input placeholder="请输入付款方式" />
               </Form.Item>
               <Flex wrap="wrap" gap="small">
                 <Button
@@ -116,7 +117,7 @@ const Orders = (props: any) => {
           }
           <Table
             style={{ marginTop: '20px' }}
-            rowKey="id"
+            rowKey="orderId"
             bordered
             columns={columns(updateItem, deleteItem)}
             {...tableProps}
@@ -126,7 +127,7 @@ const Orders = (props: any) => {
         <>
           <Form form={form}></Form>
           <Table
-            rowKey="id"
+            rowKey="orderId"
             bordered
             columns={columns(updateItem, deleteItem)}
             {...tableProps}

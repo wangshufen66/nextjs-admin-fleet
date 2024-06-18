@@ -5,7 +5,7 @@ import {
   requestData,
   responseData
 } from 'app/api/base.interface';
-import { getOrders } from 'lib/models/order';
+import { getOrders, deleteUserById } from 'lib/models/order';
 
 /**
  * 查询列表
@@ -18,17 +18,10 @@ export const GET = async (req: NextRequest) => {
     const { searchParams } = new URL(req.url);
     let page = Number(getParamsData(searchParams, 'page')) || 1;
     let size = Number(getParamsData(searchParams, 'size')) || 10;
-    let name = getParamsData(searchParams, 'name');
-    let method = getParamsData(searchParams, 'method');
-    let where: any = {};
-    if (name) {
-      where.name = name;
-    }
-    if (method) {
-      where.method = method;
-    }
-    let query = requestData(page, size, where);
-    const { count, orders } = await getOrders(name, method);
+    let name = getParamsData(searchParams, 'customerName');
+    let method = getParamsData(searchParams, 'paymentMethod');
+    let status = getParamsData(searchParams, 'orderStatus');
+    const { count, orders } = await getOrders(name, method, status);
 
     return NextResponse.json(
       responseData(200, '操作成功', {
@@ -40,6 +33,24 @@ export const GET = async (req: NextRequest) => {
     );
   } catch (err: any) {
     console.log(err);
+    return NextResponse.json(responseData(0, '操作失败'));
+  }
+};
+
+/**
+ * 删除信息
+ * @param req
+ */
+export const DELETE = async (req: NextRequest) => {
+  try {
+    const { searchParams } = new URL(req.url);
+    let id = searchParams.get('id');
+    if (!id) {
+      return NextResponse.json(responseData(0, '缺少删除信息Id'));
+    }
+    await deleteUserById(Number(id));
+    return NextResponse.json(responseData(200, '操作成功'));
+  } catch (error: any) {
     return NextResponse.json(responseData(0, '操作失败'));
   }
 };

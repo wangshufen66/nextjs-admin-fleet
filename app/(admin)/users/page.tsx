@@ -49,7 +49,7 @@ const Users = (props: any) => {
       okText: '确定',
       onOk: async () => {
         try {
-          await deleteInfo({ ids: [id as string] });
+          await deleteInfo({ id });
           message.success('操作成功');
           search.submit();
         } catch (err) {

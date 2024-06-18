@@ -22,7 +22,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
             <div className={`flex-column ${styles.content}`}>
               {/* <BreadCrumb /> */}
               <div className={styles.wrapper}>{children}</div>
-              <p className={styles.footer}>2023 @小红书11</p>
+              <p className={styles.footer}>2024</p>
             </div>
           </div>
         </div>

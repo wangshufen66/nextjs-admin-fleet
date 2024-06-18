@@ -1,57 +1,51 @@
 import { Button, Flex, Image, Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
-import { IUserInfo } from './users.type';
 
 export const columns = (
   updateItem: Function,
   deleteItem: Function
-): ColumnsType<IUserInfo> => {
+): ColumnsType<any> => {
   return [
     {
+      title: 'ID',
+      dataIndex: 'orderId',
+      key: 'orderId'
+    },
+    {
       title: '用户名',
-      dataIndex: 'username',
-      key: 'username'
+      dataIndex: 'customerName',
+      key: 'customerName'
     },
     {
-      title: '姓名',
-      dataIndex: 'name',
-      key: 'name'
+      title: '金额',
+      dataIndex: 'orderAmount',
+      key: 'orderAmount'
     },
     {
-      title: '手机',
-      dataIndex: 'phone',
-      key: 'phone'
+      title: '支付方式',
+      dataIndex: 'paymentMethod',
+      key: 'paymentMethod'
     },
     {
-      title: '邮箱',
-      dataIndex: 'email',
-      key: 'email'
+      title: '订单状态',
+      dataIndex: 'orderStatus',
+      key: 'orderStatus'
     },
-    // {
-    //   title: '部门',
-    //   dataIndex: 'depart',
-    //   key: 'depart',
-    //   render(value, record, index) {
-    //     return <Tag color="#4062d8">{value.name}</Tag>;
-    //   }
-    // },
-    // {
-    //   title: '角色',
-    //   dataIndex: 'role',
-    //   render(value, record, index) {
-    //     return <Tag>{value.name}</Tag>;
-    //   }
-    // },
-    // {
-    //   title: '创建时间',
-    //   dataIndex: 'createTime',
-    //   key: 'createTime'
-    // },
+    {
+      title: '下单时间',
+      dataIndex: 'orderTime',
+      key: 'orderTime'
+    },
+    {
+      title: '更新时间',
+      dataIndex: 'updateTime',
+      key: 'updateTime'
+    },
     {
       title: '操作',
       dataIndex: 'action',
       width: 150,
-      render: (value, record: IUserInfo, index) => (
+      render: (value, record: any, index) => (
         <Flex wrap="wrap" gap="small">
           <Button
             size="small"

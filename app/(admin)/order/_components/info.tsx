@@ -13,9 +13,6 @@ const UserInfo = (props: any) => {
     username: '',
     phone: '',
     email: ''
-    // post: '',
-    // roleId: null,
-    // departId: undefined
   };
   const [form] = Form.useForm<IUserInfo>();
   const [loading, setLoading] = useState<boolean>(false);
@@ -23,11 +20,9 @@ const UserInfo = (props: any) => {
 
   //完成 提交
   const onFinish = () => {
-    console.log('onFinish: ', infoForm);
     form.validateFields().then(async (values) => {
       try {
         let sendForm = { ...infoForm, ...values };
-        console.log('sendForm: ', sendForm);
         if (sendForm.id) {
           await updateInfo(sendForm);
         } else {
@@ -84,41 +79,6 @@ const UserInfo = (props: any) => {
           >
             <Input placeholder="请输入手机号" />
           </Form.Item>
-          {/* <Form.Item<IUserInfo>
-            label="角色"
-            name="roleId"
-            rules={rules.roleId}
-            initialValue={infoForm.roleId}
-          >
-            <Select
-              options={roleList}
-              fieldNames={{
-                label: 'name',
-                value: 'id'
-              }}
-            />
-          </Form.Item> */}
-          {/* <Form.Item<IUserInfo>
-            label="部门"
-            name="departId"
-            rules={rules.departId}
-            initialValue={infoForm.departId}
-          >
-            <TreeSelect
-              showSearch
-              style={{ width: '100%' }}
-              value={infoForm.departId}
-              dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-              placeholder="请选择部门"
-              treeDefaultExpandAll
-              onChange={(e) => changeDepart(e)}
-              treeData={departList}
-              fieldNames={{
-                label: 'name',
-                value: 'id'
-              }}
-            />
-          </Form.Item> */}
           <Form.Item<IUserInfo>
             label="邮箱"
             name="email"
@@ -126,13 +86,6 @@ const UserInfo = (props: any) => {
           >
             <Input placeholder="请输入邮箱" />
           </Form.Item>
-          {/* <Form.Item<IUserInfo>
-            label="岗位"
-            name="post"
-            initialValue={infoForm.post}
-          >
-            <Input placeholder="请输入岗位" />
-          </Form.Item> */}
         </Form>
       </Spin>
     </ShowDrawer>
