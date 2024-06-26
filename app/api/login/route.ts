@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { responseData } from '@/app/api/base.interface';
 import { signOut } from '@/lib/auth';
 
 /**
