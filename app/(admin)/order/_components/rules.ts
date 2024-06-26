@@ -1,5 +1,6 @@
 export const rules = {
-  name: [{ required: true, message: '请输入名称!' }],
-  username: [{ required: true, message: '请设置账号!' }],
-  phone: [{ required: true, message: '请输入手机号!' }]
+  customerName: [{ required: true, message: '请输入名称!' }],
+  orderAmount: [{ required: true, message: '请输入金额!' }],
+  paymentMethod: [{ required: true, message: '请输入支付方式!' }],
+  orderStatus: [{ required: true, message: '请输入订单状态!' }]
 };

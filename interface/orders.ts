@@ -13,3 +13,21 @@ export const getOrderList = (params: IQueryList) => {
 export const deleteInfo = (params: IQueryList) => {
   return http.delete<IResponse>(`/api/orders`, { params });
 };
+
+/**
+ * 添加信息
+ * @param data
+ * @returns
+ */
+export const addInfo = (data: IQueryList) => {
+  return http.post<IResponse>(`/api/orders`, data);
+};
+
+/**
+ * 更新信息
+ * @param data
+ * @returns
+ */
+export const updateInfo = (data: IQueryList) => {
+  return http.put<IResponse>(`/api/orders`, data);
+};

@@ -1,29 +1,30 @@
 import ShowDrawer from 'app/components/ShowDrawer';
-import { Form, Input, Select, Spin, TreeSelect, message } from 'antd';
+import { Form, Input, Select, Spin, message } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { IUserInfo } from '../users.type';
 import { rules } from './rules';
-import { addInfo, updateInfo } from '@/interface/users';
+import { addInfo, updateInfo } from '@/interface/orders';
 
 const UserInfo = (props: any) => {
   let { info } = props;
   //初始化表单
   let initForm = {
-    name: '',
-    username: '',
-    phone: '',
-    email: ''
+    customerName: '',
+    orderAmount: '',
+    paymentMethod: '',
+    orderStatus: '',
+    creator: ''
   };
-  const [form] = Form.useForm<IUserInfo>();
+  const [form] = Form.useForm<any>();
   const [loading, setLoading] = useState<boolean>(false);
-  const [infoForm, setInfoForm] = useState<IUserInfo>({ ...initForm, ...info });
+  const [infoForm, setInfoForm] = useState<any>({ ...initForm, ...info });
 
   //完成 提交
   const onFinish = () => {
     form.validateFields().then(async (values) => {
       try {
         let sendForm = { ...infoForm, ...values };
-        if (sendForm.id) {
+        console.log('00-- sendForm: ', sendForm);
+        if (sendForm.orderId) {
           await updateInfo(sendForm);
         } else {
           await addInfo(sendForm);
@@ -52,37 +53,38 @@ const UserInfo = (props: any) => {
           onFinish={onFinish}
           autoComplete="off"
         >
-          <Form.Item<IUserInfo>
-            label="账号"
-            name="username"
-            rules={rules.username}
-            initialValue={infoForm.username}
+          <Form.Item<any>
+            label="名称"
+            name="customerName"
+            rules={rules.customerName}
+            initialValue={infoForm.customerName}
           >
             <Input
-              disabled={infoForm.id ? true : false}
+              disabled={infoForm.orderId ? true : false}
               placeholder="请输入登录账号"
             />
           </Form.Item>
-          <Form.Item<IUserInfo>
-            label="名称"
-            name="name"
-            rules={rules.name}
-            initialValue={infoForm.name}
+          <Form.Item<any>
+            label="金额"
+            name="orderAmount"
+            rules={rules.orderAmount}
+            initialValue={infoForm.orderAmount}
           >
-            <Input placeholder="请输入名称" />
+            <Input placeholder="请输入金额" />
           </Form.Item>
-          <Form.Item<IUserInfo>
-            label="手机号"
-            name="phone"
-            rules={rules.phone}
-            initialValue={infoForm.phone}
+          <Form.Item<any>
+            label="支付方式"
+            name="paymentMethod"
+            rules={rules.paymentMethod}
+            initialValue={infoForm.paymentMethod}
           >
             <Input placeholder="请输入手机号" />
           </Form.Item>
-          <Form.Item<IUserInfo>
-            label="邮箱"
-            name="email"
-            initialValue={infoForm.email}
+          <Form.Item<any>
+            label="状态"
+            name="orderStatus"
+            rules={rules.orderStatus}
+            initialValue={infoForm.orderStatus}
           >
             <Input placeholder="请输入邮箱" />
           </Form.Item>

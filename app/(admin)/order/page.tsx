@@ -26,7 +26,7 @@ const Orders = (props: any) => {
         };
         let res = await getOrderList(form);
         let { list, total } = res.data;
-        console.log('0618 order list: ', list);
+        // console.log('0618 order list: ', list);
         let result: any = {
           list,
           total
@@ -60,6 +60,7 @@ const Orders = (props: any) => {
   };
   //编辑
   const updateItemByInfo = (item?: any) => {
+    console.log('编辑 item: ', item);
     setShowData(true);
     setDataInfo(item);
   };

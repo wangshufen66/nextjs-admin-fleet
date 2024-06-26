@@ -81,13 +81,6 @@ const UserInfo = (props: any) => {
           >
             <Input placeholder="请输入邮箱" />
           </Form.Item>
-          {/* <Form.Item<IUserInfo>
-            label="岗位"
-            name="post"
-            initialValue={infoForm.post}
-          >
-            <Input placeholder="请输入岗位" />
-          </Form.Item> */}
         </Form>
       </Spin>
     </ShowDrawer>

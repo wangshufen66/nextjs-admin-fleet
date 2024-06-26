@@ -68,3 +68,42 @@ function handleTime(data: Array<any>) {
 export async function deleteUserById(id: number) {
   await db.delete(orders).where(eq(orders.orderId, id));
 }
+
+// updateOrder
+export async function updateOrder(
+  orderId: number,
+  customerName: string,
+  orderAmount: string,
+  paymentMethod: string,
+  orderStatus: string
+) {
+  await db
+    .update(orders)
+    .set({
+      customerName,
+      orderAmount,
+      paymentMethod,
+      orderStatus
+    })
+    .where(eq(orders.orderId, orderId));
+}
+
+// addOrder
+export async function addOrder(
+  customerName: string,
+  orderAmount: string,
+  paymentMethod: string,
+  orderStatus: string
+) {
+  return await db.insert(orders).values({
+    customerId: 6,
+    customerName,
+    orderAmount,
+    paymentMethod,
+    orderStatus,
+    creator: 'admin',
+    orderTime: new Date(),
+    updateTime: new Date(),
+    shipTime: new Date()
+  });
+}

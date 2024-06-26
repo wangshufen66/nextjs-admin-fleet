@@ -50,7 +50,6 @@ export async function getUsers(
   }
 
   const moreUsers = await db.select().from(users);
-  console.log('moreUsers: ', moreUsers);
   return { users: moreUsers, count: moreUsers.length };
 }
 
